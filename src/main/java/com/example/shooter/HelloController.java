@@ -45,11 +45,6 @@ public class HelloController {
     @FXML
     public Label countShootLabel;
 
-    public void onStopGameButtonClick(ActionEvent actionEvent) {
-    }
-
-    public void onPauseGameButtonClick(ActionEvent actionEvent) {
-    }
 
     public void onShotButtonClick(ActionEvent actionEvent) {
     }
@@ -59,30 +54,55 @@ public class HelloController {
         Pause,
         Stop
     }
+
     private GameStatus gameStatus = GameStatus.Stop;
     private int scoreCount;
     private int shotsCount;
-    private boolean isShooting = false;
     private boolean bigUp = true;
-    private boolean smallUp = true;
+    private boolean smallUp = false;
+    private Timeline timeline;
 
 
     public void onStartButton() {
 
-        if (gameStatus.equals(GameStatus.Play)) {
+        if (gameStatus.equals(GameStatus.Play) || gameStatus.equals(GameStatus.Pause)) {
             shotsCount = scoreCount = 0;
             scoreLabel.setText(String.valueOf(scoreCount));
             countShootLabel.setText(String.valueOf(shotsCount));
-            startButton.setText("Начать заново");
-            System.out.println("if");
-        } else {
-            System.out.println("else");
-            animateCircles();
+            killAnimate();
+            goToStartPosition();
         }
+        gameStatus = GameStatus.Play;
+        startButton.setText("Начать заново");
+        animateCircles();
     }
 
+    public void onPauseGameButtonClick() {
+        if (gameStatus.equals(GameStatus.Play)) {
+            gameStatus = GameStatus.Pause;
+            pauseButton.setText("Продолжить");
+            killAnimate();
+        } else if (gameStatus.equals(GameStatus.Pause)) {
+            gameStatus = GameStatus.Play;
+            pauseButton.setText("Пауза");
+            timeline.play();
+        }
+
+    }
+
+    public void onStopGameButtonClick(ActionEvent actionEvent) {
+        killAnimate();
+        setToDefaultButton();
+        goToStartPosition();
+        gameStatus = GameStatus.Stop;
+    }
+
+    private void setToDefaultButton() {
+        startButton.setText("Начало игры");
+        pauseButton.setText("Пауза");
+    }
     private void animateCircles() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(25), event -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(25), event -> {
             // Получаем текущие координаты центров кругов
             double bigCircleCenterY = bigCircle.getCenterY();
             double smallCircleCenterY = smallCircle.getCenterY();
@@ -118,4 +138,15 @@ public class HelloController {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
+    private void killAnimate() {
+        if (timeline != null) {
+            timeline.stop();
+            timeline = null;
+        }
+    }
+    private void goToStartPosition() {
+        bigCircle.setCenterY(0);
+        smallCircle.setCenterY(0);
+    }
+
 }
