@@ -10,7 +10,10 @@ module com.example.shooter {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires static lombok;
 
     opens com.example.shooter to javafx.fxml;
     exports com.example.shooter;
+    exports com.example.shooter.model;
+    opens com.example.shooter.model to javafx.fxml;
 }

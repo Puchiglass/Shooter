@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e8bf5b5-e451-4db4-9543-1375c260ff87" name="Changes" comment="add start, stop, pause logic about movement">
+    <list default="true" id="0e8bf5b5-e451-4db4-9543-1375c260ff87" name="Changes" comment="lab 1">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/model/Arrow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/model/BigTarget.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/model/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/model/GameStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/model/Score.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/model/SmallTarget.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/model/Target.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/Arrow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/shooter/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/shooter/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -57,6 +66,7 @@
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;dev1&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -68,13 +78,18 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.shooter.model" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.shooter.HelloApplication" />
       <module name="Shooter" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.shooter.*" />
+          <option name="PATTERN" value="com.example.shooter.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -111,6 +126,7 @@
       <workItem from="1710347625438" duration="11900000" />
       <workItem from="1710390106663" duration="4480000" />
       <workItem from="1711180484700" duration="706000" />
+      <workItem from="1711263096479" duration="5295000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
