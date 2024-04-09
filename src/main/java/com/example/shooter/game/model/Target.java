@@ -1,4 +1,4 @@
-package com.example.shooter.model;
+package com.example.shooter.game.model;
 
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -19,7 +19,7 @@ public class Target {
         this.isGoingUp = true;
     }
 
-    void move() {
+    public void move() {
         double center = getCenterY();
         if (isGoingUp) {
             if (center > bottomBound + circle.getRadius())
@@ -34,11 +34,23 @@ public class Target {
         }
     }
 
-    void goToStart() {
+    public void goToStart() {
         circle.setCenterY(0);
+    }
+
+    public double getX() {
+        return circle.getCenterX();
+    }
+
+    public double getY() {
+        return circle.getCenterY();
     }
 
     private double getCenterY() {
         return circle.getCenterY();
+    }
+
+    public double getRadius() {
+        return circle.getRadius();
     }
 }

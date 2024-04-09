@@ -1,4 +1,4 @@
-package com.example.shooter.model;
+package com.example.shooter.game.model;
 
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -9,7 +9,7 @@ public class BigTarget extends Target {
         super.speed = 2.5;
     }
 
-    void goToStart() {
+    public void goToStart() {
         super.goToStart();
         super.isGoingUp = false;
     }
