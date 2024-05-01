@@ -34,7 +34,6 @@ public class Client {
         Socket cs = new Client().clientStart();
         log.info("Client connected to server ({})", cs.getPort());
 
-
         try {
             InputStream is = cs.getInputStream();
             DataInputStream dis = new DataInputStream(is);
