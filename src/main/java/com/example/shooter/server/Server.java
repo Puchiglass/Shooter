@@ -13,7 +13,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    private final GameInfo gameInfo = BModel.getModel();
+    private final ServerGameInfo serverGameInfo = ServerGameInfo.getInstance();
     private Thread gameThread = null;
 
     public static void main(String[] args) {
@@ -24,10 +24,10 @@ public class Server {
     void run() {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.close();
-        gameInfo.setServer(this);
+        serverGameInfo.setServer(this);
         ServerSocket ss;
         Socket cs;
-        gameInfo.setTargets(new ServerTarget[]{
+        serverGameInfo.setTargets(new ServerTarget[]{
                 new ServerTarget(new Point(475, 270),
                         AppConfig.BIG_TARGET_RADIUS,
                         AppConfig.BIG_TARGET_SPEED,
@@ -52,26 +52,26 @@ public class Server {
                 AuthMsg msg = socketServer.readAuthMsg();
                 String resultText = "";
                 boolean result = true;
-                if (gameInfo.getCountPlayers() >= GameInfo.MAX_PLAYERS) {
+                if (serverGameInfo.getCountPlayers() >= ServerGameInfo.MAX_PLAYERS) {
                     resultText = "Сервер заполнен!";
                     result = false;
                 }
-                else if (!gameInfo.isUniqueName(msg.getName())) {
+                else if (!serverGameInfo.isUniqueName(msg.getName())) {
                     resultText = "Игрок с таким именем уже есть. Введите другое имя.";
                     result = false;
                 }
                 socketServer.sendAuthResp(new AuthResponse(result, resultText));
 
                 if (result) {
-                    gameInfo.incrementCntPlayers();
-                    int numOnField = gameInfo.getFreeNumOnField();
+                    serverGameInfo.incrementCntPlayers();
+                    int numOnField = serverGameInfo.getFreeNumOnField();
                     PlayerStatistic playerStat = PlayerRepository.getPlayerStat(msg.getName());
 
-                    Player player = new Player(socketServer, GameInfo.arrows[numOnField], numOnField,
+                    Player player = new Player(socketServer, ServerGameInfo.arrows[numOnField], numOnField,
                             msg.getName(), playerStat);
-                    gameInfo.setPlayerId(cs.getPort(), numOnField);
-                    gameInfo.addPlayer(numOnField, player);
-                    gameInfo.sendNewPlayer(numOnField);
+                    serverGameInfo.setPlayerId(cs.getPort(), numOnField);
+                    serverGameInfo.addPlayer(numOnField, player);
+                    serverGameInfo.sendNewPlayer(numOnField);
                     socketServer.listenMsg();
                 }
                 else {
@@ -85,7 +85,7 @@ public class Server {
     }
 
     public void startGame() {
-        gameInfo.clearStatistic();
+        serverGameInfo.clearStatistic();
         gameThread = new Thread(this::game);
         gameThread.setDaemon(true);
         gameThread.start();
@@ -98,38 +98,38 @@ public class Server {
     }
 
     void stopGame() {
-        gameInfo.setGameStatus(false);
-        gameInfo.setTargetToStart();
-        gameInfo.sendUnreadyPlayers();
+        serverGameInfo.setGameStatus(false);
+        serverGameInfo.setTargetToStart();
+        serverGameInfo.sendUnreadyPlayers();
         gameThread.interrupt();
         gameThread = null;
-        gameInfo.sendDataToPlayers();
+        serverGameInfo.sendDataToPlayers();
     }
     void game() {
         try {
-            while (gameInfo.isGameStatus()) {
-                if (gameInfo.isPauseStatus()) {
+            while (serverGameInfo.isGameStatus()) {
+                if (serverGameInfo.isPauseStatus()) {
                     synchronized (this) {
                         this.wait();
                     }
                 }
-                gameInfo.moveArrows();
-                gameInfo.moveTargets();
-                for (ServerTarget target : gameInfo.getTargets()) {
-                    for (Player player: gameInfo.getPlayers()) {
+                serverGameInfo.moveArrows();
+                serverGameInfo.moveTargets();
+                for (ServerTarget target : serverGameInfo.getTargets()) {
+                    for (Player player: serverGameInfo.getPlayers()) {
                         if (player != null && player.getArrow().isActive() && target.checkHit(player.getArrow())) {
                             player.getArrow().remove();
                             player.getInfo().incrementScore(target.getPoints());
                             if (player.getInfo().getScore() >= AppConfig.POINTS_FOR_WIN) {
                                 player.incrementNumWins();
                                 PlayerRepository.increaseNumWins(player.getStat());
-                                gameInfo.sendWinner(player.getInfo());
+                                serverGameInfo.sendWinner(player.getInfo());
                                 stopGame();
                             }
                         }
                     }
                 }
-                gameInfo.sendDataToPlayers();
+                serverGameInfo.sendDataToPlayers();
 
                 Thread.sleep(50);
             }

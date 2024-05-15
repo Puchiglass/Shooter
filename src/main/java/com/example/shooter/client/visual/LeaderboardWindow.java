@@ -28,13 +28,13 @@ public class LeaderboardWindow {
         indexColumn.setSortable(false);
         table.getColumns().add(indexColumn);
 
-        TableColumn<PlayerStatistic, String> name_column = new TableColumn<>("Имя");
-        name_column.setCellValueFactory(new PropertyValueFactory<>("name"));
-        table.getColumns().add(name_column);
+        TableColumn<PlayerStatistic, String> nameColumn = new TableColumn<>("Имя");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        table.getColumns().add(nameColumn);
 
-        TableColumn<PlayerStatistic, Integer> num_wins_column = new TableColumn<>("Количество побед");
-        num_wins_column.setCellValueFactory(new PropertyValueFactory<>("num_wins"));
-        table.getColumns().add(num_wins_column);
+        TableColumn<PlayerStatistic, Integer> numWinsColumn = new TableColumn<>("Количество побед");
+        numWinsColumn.setCellValueFactory(new PropertyValueFactory<>("num_wins"));
+        table.getColumns().add(numWinsColumn);
 
         FlowPane main = new FlowPane(table);
         main.setAlignment(Pos.CENTER);

@@ -18,9 +18,9 @@ public class PlayerIconsField extends GridPane {
         icons = new PlayerIcon[AppConfig.MAX_PLAYERS];
     }
 
-    public void addNewIcon(int id, boolean is_main) {
+    public void addNewIcon(int id, boolean isMain) {
         if (icons[id] == null){
-            icons[id] = new PlayerIcon(is_main);
+            icons[id] = new PlayerIcon(isMain);
             this.add(icons[id], 0, id);
         }
     }

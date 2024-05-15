@@ -11,20 +11,20 @@ import java.net.Socket;
 public class SocketClient {
     private static final Logger log = LogManager.getLogger(SocketClient.class);
     private static final Gson gson = new Gson();
-    ClientGameInfo model = BClientModel.getModel();
-    Socket cs;
-    InputStream is;
-    OutputStream os;
-    DataInputStream dis;
-    DataOutputStream dos;
+
+    private final ClientGameInfo model = ClientGameInfo.getInstance();
+    private final Socket cs;
+
+    private DataInputStream dis;
+    private DataOutputStream dos;
 
     public SocketClient(Socket cs) {
         this.cs = cs;
 
         try {
-            os = cs.getOutputStream();
+            OutputStream os = cs.getOutputStream();
             dos = new DataOutputStream(os);
-            is = cs.getInputStream();
+            InputStream is = cs.getInputStream();
             dis = new DataInputStream(is);
         }
         catch (IOException e) {
@@ -64,8 +64,8 @@ public class SocketClient {
     public Msg readResponse() {
         Msg msg = null;
         try {
-            String msg_str = dis.readUTF();
-            msg = gson.fromJson(msg_str, Msg.class);
+            String msgStr = dis.readUTF();
+            msg = gson.fromJson(msgStr, Msg.class);
         }
         catch (IOException e) {
             log.warn("Error read");
@@ -76,8 +76,8 @@ public class SocketClient {
     public AuthResponse getAuthResponse() {
         AuthResponse msg = null;
         try {
-            String msg_str = dis.readUTF();
-            msg = gson.fromJson(msg_str, AuthResponse.class);
+            String msgStr = dis.readUTF();
+            msg = gson.fromJson(msgStr, AuthResponse.class);
         }
         catch (IOException e) {
             log.warn("Error read");
@@ -95,18 +95,18 @@ public class SocketClient {
     }
 
     public void sendAuthData(String name) {
-        String str_msg = gson.toJson(new AuthMsg(name));
+        String strMsg = gson.toJson(new AuthMsg(name));
         try {
-            dos.writeUTF(str_msg);
+            dos.writeUTF(strMsg);
         } catch (IOException e) {
             log.warn("Error send auth data");
         }
     }
 
     public void sendSignal(SignalMsg msg) {
-        String str_msg = gson.toJson(msg);
+        String strMsg = gson.toJson(msg);
         try {
-            dos.writeUTF(str_msg);
+            dos.writeUTF(strMsg);
         } catch (IOException e) {
             log.warn("Error send signal");
         }

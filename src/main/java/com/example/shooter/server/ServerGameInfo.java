@@ -13,23 +13,31 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public class GameInfo {
-    Server server = null;
-
+public class ServerGameInfo {
+    public static final int MAX_PLAYERS = AppConfig.MAX_PLAYERS;
     public static final ServerArrow[] arrows = {
             new ServerArrow(new Point(0, 65)),
             new ServerArrow(new Point(0, 200)),
             new ServerArrow(new Point(0, 335)),
             new ServerArrow(new Point(0, 470))
     };
+
+    private Server server = null;
     private ServerTarget[] targets;
-    static final int MAX_PLAYERS = AppConfig.MAX_PLAYERS;
     private boolean gameStatus = false;
     private boolean pauseStatus = false;
     private int countPlayers = 0;
+    private HashMap<Integer, Integer> playerIdByPort = new HashMap<>();
+    private Player[] players = new Player[MAX_PLAYERS];
 
-    HashMap<Integer, Integer> playerIdByPort = new HashMap<>();
-    Player[] players = new Player[MAX_PLAYERS];
+    private static ServerGameInfo instance;
+    private ServerGameInfo() {}
+    public static ServerGameInfo getInstance() {
+        if (instance == null) {
+            instance = new ServerGameInfo();
+        }
+        return instance;
+    }
 
     void addPlayer(int id, Player player) {
         players[id] = player;

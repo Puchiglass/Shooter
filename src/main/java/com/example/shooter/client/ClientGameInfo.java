@@ -19,6 +19,15 @@ public class ClientGameInfo {
     private ArrowData[] arrows;
     private int playerId = -1;
 
+    private static ClientGameInfo instance;
+    private ClientGameInfo() {}
+    public static ClientGameInfo getInstance() {
+        if (instance == null) {
+            instance = new ClientGameInfo();
+        }
+        return instance;
+    }
+
     public void updateData(PlayerInfo[] infos) {
         mc.update_data(infos);
     }

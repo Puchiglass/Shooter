@@ -7,11 +7,12 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class PlayerInfo {
-    private int shots = 0;
-    private int score = 0;
     private final int numOnField;
     private final String name;
     private final PlayerStatistic statistic;
+
+    private int shots = 0;
+    private int score = 0;
 
     public void incrementNumWins() {
         statistic.incrementNumWins();

@@ -34,7 +34,7 @@ public class MainController {
     private PlayerIconsField iconsField;
     private Arrow[] arrows;
 
-    ClientGameInfo model = BClientModel.getModel();
+    ClientGameInfo model = ClientGameInfo.getInstance();
 
     @FXML
     public void initialize() {

@@ -19,15 +19,15 @@ public class WinnerWindow {
         window.setScene(scene);
         window.setTitle("Игра закончилась");
 
-        Label winner_label = new Label("Победитель");
-        vBox.getChildren().add(winner_label);
+        Label winnerLabel = new Label("Победитель");
+        vBox.getChildren().add(winnerLabel);
 
-        Label winner_name = new Label(info.getName());
-        vBox.getChildren().add(winner_name);
+        Label winnerName = new Label(info.getName());
+        vBox.getChildren().add(winnerName);
 
-        Button connect_button = new Button("Продолжить");
-        connect_button.setOnAction(event-> {window.close();});
-        vBox.getChildren().add(connect_button);
+        Button connectButton = new Button("Продолжить");
+        connectButton.setOnAction(event-> {window.close();});
+        vBox.getChildren().add(connectButton);
         window.showAndWait();
     }
 

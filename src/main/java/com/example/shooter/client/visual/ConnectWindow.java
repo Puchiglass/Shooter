@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import com.example.shooter.client.BClientModel;
 import com.example.shooter.client.ClientGameInfo;
 import com.example.shooter.client.SocketClient;
 import com.example.shooter.messages.AuthResponse;
@@ -22,9 +21,9 @@ import java.net.Socket;
 
 public class ConnectWindow {
     private static final Logger log = LogManager.getLogger(ConnectWindow.class);
-    private final ClientGameInfo model = BClientModel.getModel();
-    private TextField name_input;
-    private Label error_label;
+    private final ClientGameInfo model = ClientGameInfo.getInstance();
+    private TextField nameInput;
+    private Label errorLabel;
 
     private Stage window;
 
@@ -37,19 +36,19 @@ public class ConnectWindow {
         window.setScene(scene);
         window.setTitle("Подключение");
 
-        Label name_label = new Label("Имя");
-        vBox.getChildren().add(name_label);
+        Label nameLabel = new Label("Имя");
+        vBox.getChildren().add(nameLabel);
 
-        name_input = new TextField();
-        vBox.getChildren().add(name_input);
-        name_input.setMaxSize(100, 20);
+        nameInput = new TextField();
+        vBox.getChildren().add(nameInput);
+        nameInput.setMaxSize(100, 20);
 
-        error_label = new Label();
-        vBox.getChildren().add(error_label);
+        errorLabel = new Label();
+        vBox.getChildren().add(errorLabel);
 
-        Button connect_button = new Button("Подключиться");
-        connect_button.setOnAction(event->connect());
-        vBox.getChildren().add(connect_button);
+        Button connectButton = new Button("Подключиться");
+        connectButton.setOnAction(event->connect());
+        vBox.getChildren().add(connectButton);
         window.showAndWait();
     }
 
@@ -62,7 +61,7 @@ public class ConnectWindow {
             InetAddress ip = InetAddress.getLocalHost();
             cs = new Socket(ip, AppConfig.PORT);
             model.cls = new SocketClient(cs);
-            model.cls.sendAuthData(name_input.getText());
+            model.cls.sendAuthData(nameInput.getText());
 
             AuthResponse resp = model.cls.getAuthResponse();
             if (resp.isConnected()) {
@@ -70,14 +69,14 @@ public class ConnectWindow {
                 window.close();
             }
             else {
-                error_label.setText(resp.getText());
+                errorLabel.setText(resp.getText());
                 model.cls.close();
                 model.cls = null;
             }
 
         }
         catch (IOException e) {
-            error_label.setText("Ошибка подключения к серверу");
+            errorLabel.setText("Ошибка подключения к серверу");
             log.warn("Error connect", e);
         }
     }

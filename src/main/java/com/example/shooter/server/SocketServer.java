@@ -15,20 +15,20 @@ import java.util.List;
 public class SocketServer {
     private static final Logger log = LogManager.getLogger(SocketServer.class);
     private static final Gson gson = new Gson();
-    GameInfo gameInfo = BModel.getModel();
-    Socket ss;
-    InputStream is;
-    OutputStream os;
-    DataInputStream dis;
-    DataOutputStream dos;
+
+    private final ServerGameInfo serverGameInfo = ServerGameInfo.getInstance();
+    private final Socket ss;
+
+    private DataInputStream dis;
+    private DataOutputStream dos;
 
     public SocketServer(Socket ss) {
         this.ss = ss;
 
         try {
-            os = ss.getOutputStream();
+            OutputStream os = ss.getOutputStream();
             dos = new DataOutputStream(os);
-            is = ss.getInputStream();
+            InputStream is = ss.getInputStream();
             dis = new DataInputStream(is);
         }
         catch (IOException e) {
@@ -46,36 +46,36 @@ public class SocketServer {
         while (true) {
             SignalMsg msg = readMsg();
             if (msg == null) {
-                gameInfo.addPlayer(gameInfo.getPlayerId(ss.getPort()), null);
-                gameInfo.deleteId(ss.getPort());
+                serverGameInfo.addPlayer(serverGameInfo.getPlayerId(ss.getPort()), null);
+                serverGameInfo.deleteId(ss.getPort());
                 try {
                     ss.close();
                 }
                 catch (IOException e) {
                     log.warn("Error disconnect client" + e);
                 }
-                gameInfo.decrementCntPlayers();
+                serverGameInfo.decrementCntPlayers();
                 break;
             }
             if (msg.getAction() == MsgAction.SET_READY) {
-                gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort())).setReady(msg.isSignal());
-                if (!gameInfo.isGameStatus() && gameInfo.checkReady()) {
-                    gameInfo.runGame();
+                serverGameInfo.getPlayer(serverGameInfo.getPlayerId(ss.getPort())).setReady(msg.isSignal());
+                if (!serverGameInfo.isGameStatus() && serverGameInfo.checkReady()) {
+                    serverGameInfo.runGame();
                 }
-                else if (gameInfo.isGameStatus() && gameInfo.isPauseStatus() && gameInfo.checkReady()) {
-                    gameInfo.unpauseGame();
+                else if (serverGameInfo.isGameStatus() && serverGameInfo.isPauseStatus() && serverGameInfo.checkReady()) {
+                    serverGameInfo.unpauseGame();
                 }
             }
             else if (msg.getAction() == MsgAction.SHOT) {
-                Player player = gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort()));
+                Player player = serverGameInfo.getPlayer(serverGameInfo.getPlayerId(ss.getPort()));
                 if (!player.getArrow().isActive()) {
                     player.getInfo().incrementShots();
                     player.getArrow().setActive(msg.isSignal());
                 }
             }
             else if (msg.getAction() == MsgAction.PAUSE) {
-                if (!gameInfo.isPauseStatus()) {
-                    gameInfo.pauseGame();
+                if (!serverGameInfo.isPauseStatus()) {
+                    serverGameInfo.pauseGame();
                 }
             }
             else if (msg.getAction() == MsgAction.GET_LEADERBOARD) {
@@ -137,9 +137,9 @@ public class SocketServer {
     }
 
     public void sendData() {
-        ArrowData[] arrows = gameInfo.getDataArrows();
-        String strMsg = gson.toJson(new Msg(MsgAction.SEND_DATA, gameInfo.getTargetCoords(), arrows,
-                gameInfo.getDataInfo(), null));
+        ArrowData[] arrows = serverGameInfo.getDataArrows();
+        String strMsg = gson.toJson(new Msg(MsgAction.SEND_DATA, serverGameInfo.getTargetCoords(), arrows,
+                serverGameInfo.getDataInfo(), null));
         try {
             dos.writeUTF(strMsg);
         } catch (IOException e) {
@@ -148,7 +148,7 @@ public class SocketServer {
     }
 
     public void sendNewPlayer(int id) {
-        PlayerInfo[] info = gameInfo.getPlayersInfo();
+        PlayerInfo[] info = serverGameInfo.getPlayersInfo();
         Msg msg = new Msg(MsgAction.NEW_PLAYER, null, null, info, null);
         msg.setNewPlayerId(id);
         String strMsg = gson.toJson(msg);
