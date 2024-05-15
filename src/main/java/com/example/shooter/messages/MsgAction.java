@@ -2,13 +2,13 @@ package com.example.shooter.messages;
 
 public enum MsgAction {
     SEND_DATA,
-    CONNECT,
-    SET_READY,
-    SHOT,
     NEW_PLAYER,
-    WINNER,
-    SET_UNREADY,
+    CONNECT,
+    SHOT,
     PAUSE,
+    SET_READY,
+    SET_UNREADY,
+    WINNER,
     GET_LEADERBOARD,
     SEND_LEADERBOARD
 }

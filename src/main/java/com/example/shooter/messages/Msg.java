@@ -4,53 +4,21 @@ import com.example.shooter.client.PlayerInfo;
 import com.example.shooter.messages.MsgData.ArrowData;
 import com.example.shooter.messages.MsgData.Point;
 import com.example.shooter.server.PlayerStatistic;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
+@RequiredArgsConstructor
+@Getter
+@Setter
 public class Msg {
-    MsgAction action;
-    Point[] targets;
+    private final MsgAction action;
+    private final Point[] targets;
+    private final ArrowData[] arrows;
+    private final PlayerInfo[] info;
+    private final List<PlayerStatistic> leaderboard;
 
-    ArrowData[] arrows;
-    PlayerInfo[] info;
-    List<PlayerStatistic> leaderboard;
-
-    int new_player_id;
-
-    public Msg(MsgAction action, Point[] targets, ArrowData[] arrows, PlayerInfo[] info,
-               List<PlayerStatistic> leaderboard) {
-        this.action = action;
-        this.targets = targets;
-        this.arrows = arrows;
-        this.info = info;
-        this.leaderboard = leaderboard;
-    }
-
-    public MsgAction get_action() {
-        return action;
-    }
-
-    public Point[] get_target() {
-        return targets;
-    }
-
-    public ArrowData[] get_arrows() {
-        return arrows;
-    }
-
-    public PlayerInfo[] get_info() {
-        return info;
-    }
-
-    public List<PlayerStatistic> get_leaderboard() {
-        return leaderboard;
-    }
-
-    public void set_new_player_id(int id) {
-        new_player_id = id;
-    }
-
-    public int get_new_player_id() {
-        return new_player_id;
-    }
+    private int newPlayerId;
 }

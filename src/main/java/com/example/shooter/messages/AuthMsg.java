@@ -1,12 +1,10 @@
 package com.example.shooter.messages;
 
-public class AuthMsg {
-    String name;
-    public AuthMsg(String name) {
-        this.name = name;
-    }
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-    public String get_name() {
-        return name;
-    }
+@AllArgsConstructor
+@Getter
+public class AuthMsg {
+    private String name;
 }

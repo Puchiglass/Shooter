@@ -105,9 +105,9 @@ public class MainController {
 
             ArrowData[] arrows_data = model.get_arrows();
             for (int i = 0; i < arrows_data.length; i++) {
-                if (arrows_data[i].is_active()) {
-                    arrows[i].setLayoutX(arrows_data[i].get_coords().x);
-                    arrows[i].setLayoutY(arrows_data[i].get_coords().y);
+                if (arrows_data[i].isActive()) {
+                    arrows[i].setLayoutX(arrows_data[i].getCoords().x);
+                    arrows[i].setLayoutY(arrows_data[i].getCoords().y);
                     if (!playing_field.getChildren().contains(arrows[i])) {
                         playing_field.getChildren().add(arrows[i]);
                     }

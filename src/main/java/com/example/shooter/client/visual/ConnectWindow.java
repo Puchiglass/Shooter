@@ -63,12 +63,12 @@ public class ConnectWindow {
             model.cls.send_auth_data(name_input.getText());
 
             AuthResponse resp = model.cls.get_auth_response();
-            if (resp.is_connected()) {
+            if (resp.isConnected()) {
                 model.cls.listen_msg();
                 window.close();
             }
             else {
-                error_label.setText(resp.get_text());
+                error_label.setText(resp.getText());
                 model.cls.close();
                 model.cls = null;
             }

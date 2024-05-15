@@ -54,8 +54,8 @@ public class SocketServer {
                 gameInfo.decrementCntPlayers();
                 break;
             }
-            if (msg.get_action() == MsgAction.SET_READY) {
-                gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort())).set_ready(msg.get_signal());
+            if (msg.getAction() == MsgAction.SET_READY) {
+                gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort())).set_ready(msg.isSignal());
                 if (!gameInfo.isGameStatus() && gameInfo.checkReady()) {
                     gameInfo.run_game();
                 }
@@ -63,19 +63,19 @@ public class SocketServer {
                     gameInfo.unpauseGame();
                 }
             }
-            else if (msg.get_action() == MsgAction.SHOT) {
+            else if (msg.getAction() == MsgAction.SHOT) {
                 Player player = gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort()));
                 if (!player.get_arrow().isActive()) {
                     player.get_info().increase_shots();
-                    player.get_arrow().setActive(msg.get_signal());
+                    player.get_arrow().setActive(msg.isSignal());
                 }
             }
-            else if (msg.get_action() == MsgAction.PAUSE) {
+            else if (msg.getAction() == MsgAction.PAUSE) {
                 if (!gameInfo.isPauseStatus()) {
                     gameInfo.pauseGame();
                 }
             }
-            else if (msg.get_action() == MsgAction.GET_LEADERBOARD) {
+            else if (msg.getAction() == MsgAction.GET_LEADERBOARD) {
                 send_leaderboard();
             }
 
@@ -147,7 +147,7 @@ public class SocketServer {
     public void send_new_player(int id) {
         PlayerInfo[] info = gameInfo.getPlayersInfo();
         Msg msg = new Msg(MsgAction.NEW_PLAYER, null, null, info, null);
-        msg.set_new_player_id(id);
+        msg.setNewPlayerId(id);
         String str_msg = gson.toJson(msg);
         try {
             dos.writeUTF(str_msg);

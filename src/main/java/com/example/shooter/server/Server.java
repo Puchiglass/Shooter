@@ -58,7 +58,7 @@ public class Server {
                     result_text = "Сервер заполнен!";
                     result = false;
                 }
-                else if (!gameInfo.isUniqueName(msg.get_name())) {
+                else if (!gameInfo.isUniqueName(msg.getName())) {
                     result_text = "Игрок с таким именем уже есть. Введите другое имя.";
                     result = false;
                 }
@@ -67,10 +67,10 @@ public class Server {
                 if (result) {
                     gameInfo.incrementCntPlayers();
                     int num_on_field = gameInfo.getFreeNumOnField();
-                    PlayerStatistic player_stat = PlayerRepository.getPlayerStat(msg.get_name());
+                    PlayerStatistic player_stat = PlayerRepository.getPlayerStat(msg.getName());
 
                     Player player = new Player(server_socket, GameInfo.arrows[num_on_field], num_on_field,
-                            msg.get_name(), player_stat);
+                            msg.getName(), player_stat);
                     gameInfo.setPlayerId(cs.getPort(), num_on_field);
                     gameInfo.addPlayer(num_on_field, player);
                     gameInfo.sendNewPlayer(num_on_field);

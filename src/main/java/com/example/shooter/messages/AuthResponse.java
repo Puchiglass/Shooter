@@ -1,19 +1,18 @@
 package com.example.shooter.messages;
 
+import lombok.Getter;
+
+@Getter
 public class AuthResponse {
-    boolean result;
-    String text;
+    private final boolean result;
+    private final String text;
 
     public AuthResponse(boolean is_connected, String text) {
-        result = is_connected;
+        this.result = is_connected;
         this.text = text;
     }
 
-    public boolean is_connected() {
+    public boolean isConnected() {
         return result;
-    }
-
-    public String get_text() {
-        return text;
     }
 }

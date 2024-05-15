@@ -38,22 +38,22 @@ public class SocketClient {
     void run() {
         while (true) {
             Msg msg = read_response();
-            if (msg.get_action() == MsgAction.SEND_DATA) {
-                model.set_target_coords(msg.get_target());
-                model.set_arrows(msg.get_arrows());
-                model.update_data(msg.get_info());
+            if (msg.getAction() == MsgAction.SEND_DATA) {
+                model.set_target_coords(msg.getTargets());
+                model.set_arrows(msg.getArrows());
+                model.update_data(msg.getInfo());
             }
-            else if (msg.get_action() == MsgAction.NEW_PLAYER) {
-                model.add_new_player(msg.get_info(), msg.get_new_player_id());
+            else if (msg.getAction() == MsgAction.NEW_PLAYER) {
+                model.add_new_player(msg.getInfo(), msg.getNewPlayerId());
             }
-            else if (msg.get_action() == MsgAction.WINNER) {
-                model.show_winner(msg.get_info()[0]);
+            else if (msg.getAction() == MsgAction.WINNER) {
+                model.show_winner(msg.getInfo()[0]);
             }
-            else if (msg.get_action() == MsgAction.SET_UNREADY) {
+            else if (msg.getAction() == MsgAction.SET_UNREADY) {
                 model.set_unready();
             }
-            else if (msg.get_action() == MsgAction.SEND_LEADERBOARD) {
-                model.show_leaderboard(msg.get_leaderboard());
+            else if (msg.getAction() == MsgAction.SEND_LEADERBOARD) {
+                model.show_leaderboard(msg.getLeaderboard());
             }
         }
     }
