@@ -4,26 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e8bf5b5-e451-4db4-9543-1375c260ff87" name="Changes" comment="refactor messages">
+    <list default="true" id="0e8bf5b5-e451-4db4-9543-1375c260ff87" name="Changes" comment="refactor client">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/Arrow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/BClientModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/BClientModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/ClientModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/ClientGameInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/PlayerInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/PlayerInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/SocketClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/ConnectWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/ConnectWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/LeaderboardWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/LeaderboardWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerIcon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerIconsField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerIconsField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerInfoControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerInfoControlPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerInfoVBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerInfoVBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/WinnerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/WinnerWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/GameInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerArrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerArrow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/SocketServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +233,7 @@
       <workItem from="1714668757333" duration="2985000" />
       <workItem from="1714807202759" duration="4450000" />
       <workItem from="1714976068368" duration="4863000" />
-      <workItem from="1715794252018" duration="6986000" />
+      <workItem from="1715794252018" duration="8093000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -340,7 +331,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715799863377</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="refactor client">
+      <option name="closed" value="true" />
+      <created>1715801461050</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1715801461050</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,7 +365,8 @@
     <MESSAGE value="init" />
     <MESSAGE value="refactor server" />
     <MESSAGE value="refactor messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor messages" />
+    <MESSAGE value="refactor client" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor client" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

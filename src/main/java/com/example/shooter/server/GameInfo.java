@@ -41,7 +41,7 @@ public class GameInfo {
 
     boolean checkReady() {
         for (Player p: players) {
-            if (p != null && !p.is_ready()) {
+            if (p != null && !p.isReady()) {
                 return false;
             }
         }
@@ -50,8 +50,8 @@ public class GameInfo {
 
     void moveArrows() {
         for (Player p: players) {
-            if (p != null && p.get_arrow().isActive()) {
-                p.get_arrow().move();
+            if (p != null && p.getArrow().isActive()) {
+                p.getArrow().move();
             }
         }
     }
@@ -71,7 +71,7 @@ public class GameInfo {
     public void clearStatistic() {
         for (Player p: players) {
             if (p != null) {
-                p.get_info().clearStatistic();
+                p.getInfo().clearStatistic();
             }
         }
     }
@@ -79,8 +79,8 @@ public class GameInfo {
     public void sendUnreadyPlayers() {
         for (Player p: players) {
             if (p != null) {
-                p.set_ready(false);
-                p.get_socket().send_unready();
+                p.setReady(false);
+                p.getSocket().sendUnready();
             }
         }
     }
@@ -88,7 +88,7 @@ public class GameInfo {
     public void sendWinner(PlayerInfo info) {
         for (Player p: players) {
             if (p != null) {
-                p.get_socket().send_winner(info);
+                p.getSocket().sendWinner(info);
             }
         }
     }
@@ -96,7 +96,7 @@ public class GameInfo {
     void sendDataToPlayers() {
         for (Player p: players) {
             if (p != null) {
-                p.get_socket().send_data();
+                p.getSocket().sendData();
             }
         }
     }
@@ -104,7 +104,7 @@ public class GameInfo {
     void sendNewPlayer(int id) {
         for (Player p: players) {
             if (p != null) {
-                p.get_socket().send_new_player(id);
+                p.getSocket().sendNewPlayer(id);
             }
         }
     }
@@ -114,7 +114,7 @@ public class GameInfo {
         int cur_ind = 0;
         for (Player p: players) {
             if (p != null) {
-                PlayerInfo info = p.get_info();
+                PlayerInfo info = p.getInfo();
                 res[cur_ind] = info;
                 cur_ind++;
             }
@@ -135,7 +135,7 @@ public class GameInfo {
         int cur_ind = 0;
         for (Player p: players) {
             if (p != null) {
-                ServerArrow arrow = p.get_arrow();
+                ServerArrow arrow = p.getArrow();
                 res[cur_ind] = new ArrowData(arrow.getCoords(), arrow.isActive());
                 cur_ind++;
             }
@@ -148,7 +148,7 @@ public class GameInfo {
         int cur_ind = 0;
         for (Player p: players) {
             if (p != null) {
-                res[cur_ind] = p.get_info();
+                res[cur_ind] = p.getInfo();
                 cur_ind++;
             }
         }
@@ -157,7 +157,7 @@ public class GameInfo {
 
     public boolean isUniqueName(String name) {
         for (Player p : players) {
-            if (p != null && Objects.equals(p.get_info().getName(), name)) {
+            if (p != null && Objects.equals(p.getInfo().getName(), name)) {
                 return false;
             }
         }

@@ -29,7 +29,7 @@ public class ServerArrow {
     ServerArrow(Point startCoords) {
         active = false;
         this.startCoords = startCoords;
-        coords = new Point(startCoords.x, startCoords.y);
+        coords = new Point(startCoords.x + AppConfig.ARROW_LENGTH, startCoords.y);
         speed = AppConfig.ARROW_SPEED;
     }
 }

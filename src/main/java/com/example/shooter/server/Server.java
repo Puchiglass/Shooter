@@ -51,7 +51,7 @@ public class Server {
                 System.out.println("Client connect - " + cs.getPort());
 
                 SocketServer server_socket = new SocketServer(cs);
-                AuthMsg msg = server_socket.read_auth_msg();
+                AuthMsg msg = server_socket.readAuthMsg();
                 String result_text = "";
                 boolean result = true;
                 if (gameInfo.getCountPlayers() >= GameInfo.MAX_PLAYERS) {
@@ -62,7 +62,7 @@ public class Server {
                     result_text = "Игрок с таким именем уже есть. Введите другое имя.";
                     result = false;
                 }
-                server_socket.send_auth_resp(new AuthResponse(result, result_text));
+                server_socket.sendAuthResp(new AuthResponse(result, result_text));
 
                 if (result) {
                     gameInfo.incrementCntPlayers();
@@ -74,7 +74,7 @@ public class Server {
                     gameInfo.setPlayerId(cs.getPort(), num_on_field);
                     gameInfo.addPlayer(num_on_field, player);
                     gameInfo.sendNewPlayer(num_on_field);
-                    server_socket.listen_msg();
+                    server_socket.listenMsg();
                 }
                 else {
                     server_socket.close();
@@ -119,13 +119,13 @@ public class Server {
                 gameInfo.moveTargets();
                 for (ServerTarget target : gameInfo.getTargets()) {
                     for (Player player: gameInfo.getPlayers()) {
-                        if (player != null && player.get_arrow().isActive() && target.check_hit(player.get_arrow())) {
-                            player.get_arrow().remove();
-                            player.get_info().incrementScore(target.get_points_for_hit());
-                            if (player.get_info().getScore() >= AppConfig.POINTS_FOR_WIN) {
-                                player.increase_num_wins();
-                                PlayerRepository.increaseNumWins(player.get_stat());
-                                gameInfo.sendWinner(player.get_info());
+                        if (player != null && player.getArrow().isActive() && target.check_hit(player.getArrow())) {
+                            player.getArrow().remove();
+                            player.getInfo().incrementScore(target.get_points_for_hit());
+                            if (player.getInfo().getScore() >= AppConfig.POINTS_FOR_WIN) {
+                                player.incrementNumWins();
+                                PlayerRepository.increaseNumWins(player.getStat());
+                                gameInfo.sendWinner(player.getInfo());
                                 stop_game();
                             }
                         }

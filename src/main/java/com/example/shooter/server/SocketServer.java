@@ -5,13 +5,16 @@ import com.example.shooter.client.Player;
 import com.example.shooter.client.PlayerInfo;
 import com.example.shooter.messages.*;
 import com.example.shooter.messages.MsgData.ArrowData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
 
 public class SocketServer {
-    Gson gson = new Gson();
+    private static final Logger log = LogManager.getLogger(SocketServer.class);
+    private static final Gson gson = new Gson();
     GameInfo gameInfo = BModel.getModel();
     Socket ss;
     InputStream is;
@@ -29,11 +32,11 @@ public class SocketServer {
             dis = new DataInputStream(is);
         }
         catch (IOException e) {
-            System.out.println("Error SocketClient");
+            log.warn("Error SocketClient");
         }
     }
 
-    public void listen_msg() {
+    public void listenMsg() {
         Thread thread = new Thread(this::run);
         thread.setDaemon(true);
         thread.start();
@@ -41,7 +44,7 @@ public class SocketServer {
 
     void run() {
         while (true) {
-            SignalMsg msg = read_msg();
+            SignalMsg msg = readMsg();
             if (msg == null) {
                 gameInfo.addPlayer(gameInfo.getPlayerId(ss.getPort()), null);
                 gameInfo.deleteId(ss.getPort());
@@ -49,13 +52,13 @@ public class SocketServer {
                     ss.close();
                 }
                 catch (IOException e) {
-                    System.out.println("Error disconnect client" + e);
+                    log.warn("Error disconnect client" + e);
                 }
                 gameInfo.decrementCntPlayers();
                 break;
             }
             if (msg.getAction() == MsgAction.SET_READY) {
-                gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort())).set_ready(msg.isSignal());
+                gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort())).setReady(msg.isSignal());
                 if (!gameInfo.isGameStatus() && gameInfo.checkReady()) {
                     gameInfo.run_game();
                 }
@@ -65,9 +68,9 @@ public class SocketServer {
             }
             else if (msg.getAction() == MsgAction.SHOT) {
                 Player player = gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort()));
-                if (!player.get_arrow().isActive()) {
-                    player.get_info().incrementShots();
-                    player.get_arrow().setActive(msg.isSignal());
+                if (!player.getArrow().isActive()) {
+                    player.getInfo().incrementShots();
+                    player.getArrow().setActive(msg.isSignal());
                 }
             }
             else if (msg.getAction() == MsgAction.PAUSE) {
@@ -76,13 +79,13 @@ public class SocketServer {
                 }
             }
             else if (msg.getAction() == MsgAction.GET_LEADERBOARD) {
-                send_leaderboard();
+                sendLeaderboard();
             }
 
         }
     }
 
-    public AuthMsg read_auth_msg() {
+    public AuthMsg readAuthMsg() {
         AuthMsg msg = null;
         try {
             String msg_str = dis.readUTF();
@@ -94,57 +97,57 @@ public class SocketServer {
         return msg;
     }
 
-    public void send_unready() {
+    public void sendUnready() {
         String str_msg = gson.toJson(new Msg(MsgAction.SET_UNREADY, null, null, null, null));
         try {
             dos.writeUTF(str_msg);
         } catch (IOException e) {
-            System.out.println("Error send unready to player");
+            log.warn("Error send unready to player");
         }
     }
 
-    public void send_auth_resp(AuthResponse resp) {
+    public void sendAuthResp(AuthResponse resp) {
         String str_msg = gson.toJson(resp);
         try {
             dos.writeUTF(str_msg);
         } catch (IOException e) {
-            System.out.println("Error send auth res to player");
+            log.warn("Error send auth res to player");
         }
     }
 
-    public void send_winner(PlayerInfo info) {
+    public void sendWinner(PlayerInfo info) {
         PlayerInfo[] info_data = new PlayerInfo[] {info};
         String str_msg = gson.toJson(new Msg(MsgAction.WINNER, null, null, info_data, null));
         try {
             dos.writeUTF(str_msg);
         } catch (IOException e) {
-            System.out.println("Error send winner");
+            log.warn("Error send winner");
         }
     }
 
-    private void send_leaderboard() {
+    private void sendLeaderboard() {
         List<PlayerStatistic> leaderboard = PlayerRepository.getLeaderboard();
         String str_msg = gson.toJson(new Msg(MsgAction.SEND_LEADERBOARD, null, null,
                 null, leaderboard));
         try {
             dos.writeUTF(str_msg);
         } catch (IOException e) {
-            System.out.println("Error send leaderboard");
+            log.warn("Error send leaderboard");
         }
     }
 
-    public void send_data() {
+    public void sendData() {
         ArrowData[] arrows = gameInfo.getDataArrows();
         String str_msg = gson.toJson(new Msg(MsgAction.SEND_DATA, gameInfo.getTargetCoords(), arrows,
                 gameInfo.getDataInfo(), null));
         try {
             dos.writeUTF(str_msg);
         } catch (IOException e) {
-            System.out.println("Error send data to player");
+            log.warn("Error send data to player");
         }
     }
 
-    public void send_new_player(int id) {
+    public void sendNewPlayer(int id) {
         PlayerInfo[] info = gameInfo.getPlayersInfo();
         Msg msg = new Msg(MsgAction.NEW_PLAYER, null, null, info, null);
         msg.setNewPlayerId(id);
@@ -152,29 +155,29 @@ public class SocketServer {
         try {
             dos.writeUTF(str_msg);
         } catch (IOException e) {
-            System.out.println("Error send new player");
+            log.warn("Error send new player");
         }
     }
 
-    public SignalMsg read_msg() {
+    public SignalMsg readMsg() {
         SignalMsg msg = null;
         try {
             String msg_str = dis.readUTF();
             msg = gson.fromJson(msg_str, SignalMsg.class);
         }
         catch (IOException e) {
-            System.out.println("Client disconnect - " + ss.getPort());
+            log.warn("Client disconnect - " + ss.getPort());
         }
         return msg;
     }
 
     public void close() {
         try {
-            System.out.println("Client disconnect - " + ss.getPort());
+            log.info("Client disconnect - " + ss.getPort());
             ss.close();
         }
         catch (IOException e) {
-            System.out.println("Error close connect");
+            log.warn("Error close connect");
         }
     }
 }

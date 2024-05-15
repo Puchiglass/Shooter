@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 public class PlayerIcon extends Polygon {
-    public PlayerIcon(boolean is_main) {
+    public PlayerIcon(boolean isMain) {
         super(
                 50, 25,
                 0, 50,
@@ -12,7 +12,7 @@ public class PlayerIcon extends Polygon {
         );
 
         Color color;
-        if (is_main) {
+        if (isMain) {
             color = Color.GREEN;
         } else {
             color = Color.RED;

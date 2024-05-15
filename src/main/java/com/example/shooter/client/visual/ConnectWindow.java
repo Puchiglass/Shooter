@@ -1,5 +1,6 @@
 package com.example.shooter.client.visual;
 
+import com.example.shooter.AppConfig;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,19 +13,20 @@ import com.example.shooter.client.BClientModel;
 import com.example.shooter.client.ClientGameInfo;
 import com.example.shooter.client.SocketClient;
 import com.example.shooter.messages.AuthResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
 public class ConnectWindow {
-    ClientGameInfo model = BClientModel.getModel();
-    TextField name_input;
-    Label error_label;
+    private static final Logger log = LogManager.getLogger(ConnectWindow.class);
+    private final ClientGameInfo model = BClientModel.getModel();
+    private TextField name_input;
+    private Label error_label;
 
-    Stage window;
-
-    int port = 5588;
+    private Stage window;
 
     public void show() {
         window = new Stage();
@@ -58,7 +60,7 @@ public class ConnectWindow {
         try {
             Socket cs;
             InetAddress ip = InetAddress.getLocalHost();
-            cs = new Socket(ip, port);
+            cs = new Socket(ip, AppConfig.PORT);
             model.cls = new SocketClient(cs);
             model.cls.sendAuthData(name_input.getText());
 
@@ -76,7 +78,7 @@ public class ConnectWindow {
         }
         catch (IOException e) {
             error_label.setText("Ошибка подключения к серверу");
-            System.out.println("Error connect");
+            log.warn("Error connect", e);
         }
     }
 
