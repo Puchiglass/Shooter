@@ -71,7 +71,7 @@ public class GameInfo {
     public void clearStatistic() {
         for (Player p: players) {
             if (p != null) {
-                p.get_info().clear_statistic();
+                p.get_info().clearStatistic();
             }
         }
     }
@@ -157,7 +157,7 @@ public class GameInfo {
 
     public boolean isUniqueName(String name) {
         for (Player p : players) {
-            if (p != null && Objects.equals(p.get_info().get_name(), name)) {
+            if (p != null && Objects.equals(p.get_info().getName(), name)) {
                 return false;
             }
         }

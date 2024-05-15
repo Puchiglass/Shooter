@@ -121,8 +121,8 @@ public class Server {
                     for (Player player: gameInfo.getPlayers()) {
                         if (player != null && player.get_arrow().isActive() && target.check_hit(player.get_arrow())) {
                             player.get_arrow().remove();
-                            player.get_info().increase_score(target.get_points_for_hit());
-                            if (player.get_info().get_score() >= AppConfig.POINTS_FOR_WIN) {
+                            player.get_info().incrementScore(target.get_points_for_hit());
+                            if (player.get_info().getScore() >= AppConfig.POINTS_FOR_WIN) {
                                 player.increase_num_wins();
                                 PlayerRepository.increaseNumWins(player.get_stat());
                                 gameInfo.sendWinner(player.get_info());

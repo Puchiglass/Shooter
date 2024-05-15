@@ -66,7 +66,7 @@ public class SocketServer {
             else if (msg.getAction() == MsgAction.SHOT) {
                 Player player = gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort()));
                 if (!player.get_arrow().isActive()) {
-                    player.get_info().increase_shots();
+                    player.get_info().incrementShots();
                     player.get_arrow().setActive(msg.isSignal());
                 }
             }

@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import com.example.shooter.client.BClientModel;
-import com.example.shooter.client.ClientModel;
+import com.example.shooter.client.ClientGameInfo;
 import com.example.shooter.client.SocketClient;
 import com.example.shooter.messages.AuthResponse;
 
@@ -18,7 +18,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class ConnectWindow {
-    ClientModel model = BClientModel.get_model();
+    ClientGameInfo model = BClientModel.getModel();
     TextField name_input;
     Label error_label;
 
@@ -60,11 +60,11 @@ public class ConnectWindow {
             InetAddress ip = InetAddress.getLocalHost();
             cs = new Socket(ip, port);
             model.cls = new SocketClient(cs);
-            model.cls.send_auth_data(name_input.getText());
+            model.cls.sendAuthData(name_input.getText());
 
-            AuthResponse resp = model.cls.get_auth_response();
+            AuthResponse resp = model.cls.getAuthResponse();
             if (resp.isConnected()) {
-                model.cls.listen_msg();
+                model.cls.listenMsg();
                 window.close();
             }
             else {

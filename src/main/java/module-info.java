@@ -2,6 +2,7 @@ open module com.example.shooter {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
+    requires org.apache.logging.log4j;
     requires org.hibernate.orm.core;
     requires org.hibernate.commons.annotations;
     requires org.postgresql.jdbc;

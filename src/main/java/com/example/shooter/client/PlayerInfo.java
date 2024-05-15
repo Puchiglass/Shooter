@@ -1,58 +1,32 @@
 package com.example.shooter.client;
 
 import com.example.shooter.server.PlayerStatistic;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+@Getter
+@RequiredArgsConstructor
 public class PlayerInfo {
-    int shots;
-    int score;
-    int num_on_field;
-    String name;
-    private PlayerStatistic stat;
+    private int shots = 0;
+    private int score = 0;
+    private final int numOnField;
+    private final String name;
+    private final PlayerStatistic statistic;
 
-    public PlayerInfo() {}
-
-    PlayerInfo(int num_on_field, String name, PlayerStatistic stat) {
-        shots = 0;
-        score = 0;
-        this.num_on_field = num_on_field;
-        this.name = name;
-        this.stat = stat;
+    public void incrementNumWins() {
+        statistic.incrementNumWins();
     }
 
-    public int get_score() {
-        return score;
-    }
-
-    public int get_shots() {
-        return shots;
-    }
-
-    public PlayerStatistic get_stat() {
-        return stat;
-    }
-
-    public void increase_num_wins() {
-        stat.incrementNumWins();
-    }
-
-    public void increase_shots() {
+    public void incrementShots() {
         shots++;
     }
 
-    public void increase_score(int points) {
+    public void incrementScore(int points) {
         score += points;
     }
 
-    public void clear_statistic() {
+    public void clearStatistic() {
         shots = 0;
         score = 0;
-    }
-
-    public String get_name() {
-        return name;
-    }
-
-    public int get_num_on_field() {
-        return num_on_field;
     }
 }

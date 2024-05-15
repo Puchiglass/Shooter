@@ -14,9 +14,8 @@ import com.example.shooter.server.PlayerStatistic;
 import java.util.List;
 
 public class LeaderboardWindow {
-    Stage window;
     public void show(List<PlayerStatistic> leaderboard) {
-        window = new Stage();
+        Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         TableView<PlayerStatistic> table = new TableView<>(FXCollections.observableList(leaderboard));
         table.setPrefSize(267, 300);

@@ -22,7 +22,7 @@ public class WinnerWindow {
         Label winner_label = new Label("Победитель");
         vBox.getChildren().add(winner_label);
 
-        Label winner_name = new Label(info.get_name());
+        Label winner_name = new Label(info.getName());
         vBox.getChildren().add(winner_name);
 
         Button connect_button = new Button("Продолжить");

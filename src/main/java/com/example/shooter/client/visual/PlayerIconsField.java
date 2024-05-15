@@ -6,7 +6,8 @@ import javafx.scene.layout.RowConstraints;
 import com.example.shooter.AppConfig;
 
 public class PlayerIconsField extends GridPane {
-    PlayerIcon[] icons;
+    private final PlayerIcon[] icons;
+
     public PlayerIconsField() {
         super();
         this.addColumn(0);
@@ -17,7 +18,7 @@ public class PlayerIconsField extends GridPane {
         icons = new PlayerIcon[AppConfig.MAX_PLAYERS];
     }
 
-    public void add_new_icon(int id, boolean is_main) {
+    public void addNewIcon(int id, boolean is_main) {
         if (icons[id] == null){
             icons[id] = new PlayerIcon(is_main);
             this.add(icons[id], 0, id);

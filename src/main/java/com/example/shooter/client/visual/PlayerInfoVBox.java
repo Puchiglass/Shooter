@@ -7,56 +7,56 @@ import com.example.shooter.AppConfig;
 import com.example.shooter.client.PlayerInfo;
 
 public class PlayerInfoVBox extends VBox {
-    Label name_label;
-    Label score_label;
-    Label shots_label;
-    Label score_val;
-    Label shots_val;
-    Label wins_label;
-    Label wins_val;
+    Label nameLabel;
+    Label scoreLabel;
+    Label shotsLabel;
+    Label scoreVal;
+    Label shotsVal;
+    Label winsLabel;
+    Label winsVal;
 
     public PlayerInfoVBox(PlayerInfo info) {
         super();
         double height = AppConfig.PLAYING_FIELD_HEIGHT / 4;
         this.setHeight(height);
 
-        name_label = new Label(info.get_name());
-        this.getChildren().add(name_label);
+        nameLabel = new Label(info.getName());
+        this.getChildren().add(nameLabel);
 
-        score_label = new Label("Счет:");
-        this.getChildren().add(score_label);
+        scoreLabel = new Label("Счет:");
+        this.getChildren().add(scoreLabel);
 
-        score_val = new Label(Integer.toString(info.get_score()));
-        this.getChildren().add(score_val);
+        scoreVal = new Label(Integer.toString(info.getScore()));
+        this.getChildren().add(scoreVal);
 
-        shots_label = new Label("Выстрелы:");
-        this.getChildren().add(shots_label);
+        shotsLabel = new Label("Выстрелы:");
+        this.getChildren().add(shotsLabel);
 
-        shots_val = new Label(Integer.toString(info.get_shots()));
-        this.getChildren().add(shots_val);
+        shotsVal = new Label(Integer.toString(info.getShots()));
+        this.getChildren().add(shotsVal);
 
-        wins_label = new Label("Победы:");
-        this.getChildren().add(wins_label);
+        winsLabel = new Label("Победы:");
+        this.getChildren().add(winsLabel);
 
-        wins_val = new Label(Integer.toString(info.get_stat().getNumWins()));
-        this.getChildren().add(wins_val);
+        winsVal = new Label(Integer.toString(info.getStatistic().getNumWins()));
+        this.getChildren().add(winsVal);
 
-        this.setLayoutY(info.get_num_on_field() * height);
+        this.setLayoutY(info.getNumOnField() * height);
         this.setLayoutX(30);
         this.setAlignment(Pos.CENTER);
     }
 
-    public void update_score_val(int val)
+    public void updateScoreVal(int val)
     {
-        score_val.setText(Integer.toString(val));
+        scoreVal.setText(Integer.toString(val));
     }
 
-    public void update_shots_val(int val) {
-        shots_val.setText(Integer.toString(val));
+    public void updateShotsVal(int val) {
+        shotsVal.setText(Integer.toString(val));
     }
 
-    public void update_wins_val(int val) {
-        wins_val.setText(Integer.toString(val));
+    public void updateWinsVal(int val) {
+        winsVal.setText(Integer.toString(val));
     }
 
 }

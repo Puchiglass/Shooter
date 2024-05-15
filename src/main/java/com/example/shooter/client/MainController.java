@@ -34,7 +34,7 @@ public class MainController {
     private PlayerIconsField iconsField;
     private Arrow[] arrows;
 
-    ClientModel model = BClientModel.get_model();
+    ClientGameInfo model = BClientModel.getModel();
 
     @FXML
     public void initialize() {
@@ -58,7 +58,7 @@ public class MainController {
     @FXML
     void ready() {
         if (model.cls != null) {
-            model.cls.send_signal(new SignalMsg(MsgAction.SET_READY, true));
+            model.cls.sendSignal(new SignalMsg(MsgAction.SET_READY, true));
             ready_button.getStyleClass().remove("unready-btn");
             ready_button.getStyleClass().add("ready-btn");
         }
@@ -72,38 +72,38 @@ public class MainController {
     @FXML
     void shoot() {
         if (model.cls != null) {
-            model.cls.send_signal(new SignalMsg(MsgAction.SHOT, true));
+            model.cls.sendSignal(new SignalMsg(MsgAction.SHOT, true));
         }
     }
 
     @FXML
     void pause_game() {
         if (model.cls != null) {
-            model.cls.send_signal(new SignalMsg(MsgAction.PAUSE, true));
+            model.cls.sendSignal(new SignalMsg(MsgAction.PAUSE, true));
         }
     }
 
     @FXML
     void get_leaderboard() {
-        model.cls.send_signal(new SignalMsg(MsgAction.GET_LEADERBOARD, true));
+        model.cls.sendSignal(new SignalMsg(MsgAction.GET_LEADERBOARD, true));
     }
 
     public void add_new_player(PlayerInfo info) {
         Platform.runLater( () -> {
-            iconsField.add_new_icon(info.num_on_field, info.num_on_field == model.player_id);
-            controlPanel.add_new_player(info);
+            iconsField.addNewIcon(info.getNumOnField(), info.getNumOnField() == model.getPlayerId());
+            controlPanel.addNewPlayer(info);
         });
     }
     public void update_data(PlayerInfo[] infos) {
         Platform.runLater(() -> {
-            Point[] new_target_coords = model.get_target_coords();
+            Point[] new_target_coords = model.getTargetCoords();
             big_target.setLayoutX(new_target_coords[0].x);
             big_target.setLayoutY(new_target_coords[0].y);
 
             small_target.setLayoutX(new_target_coords[1].x);
             small_target.setLayoutY(new_target_coords[1].y);
 
-            ArrowData[] arrows_data = model.get_arrows();
+            ArrowData[] arrows_data = model.getArrows();
             for (int i = 0; i < arrows_data.length; i++) {
                 if (arrows_data[i].isActive()) {
                     arrows[i].setLayoutX(arrows_data[i].getCoords().x);
@@ -116,13 +116,13 @@ public class MainController {
                     playing_field.getChildren().remove(arrows[i]);
                 }
             }
-            controlPanel.update_data(infos);
+            controlPanel.updateData(infos);
         });
     }
 
     public void show_winner(PlayerInfo info) {
         Platform.runLater( () -> {
-            controlPanel.update_num_wins(info);
+            controlPanel.updateNumWins(info);
             WinnerWindow.show(info);
         });
     }

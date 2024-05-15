@@ -18,11 +18,11 @@ public class Player {
     }
 
     public void increase_num_wins() {
-        info.increase_num_wins();
+        info.incrementNumWins();
     }
 
     public PlayerStatistic get_stat() {
-        return info.get_stat();
+        return info.getStatistic();
     }
 
     public boolean is_ready() {
