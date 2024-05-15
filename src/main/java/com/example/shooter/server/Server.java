@@ -32,14 +32,14 @@ public class Server {
         gameInfo.setTargets(new ServerTarget[]{
                 new ServerTarget(new Point(475, 270),
                         AppConfig.BIG_TARGET_RADIUS,
-                        AppConfig.BIG_TARGET_DISTANCE,
                         AppConfig.BIG_TARGET_SPEED,
-                        AppConfig.BIG_TARGET_POINTS_FOR_HIT),
+                        AppConfig.BIG_TARGET_POINTS_FOR_HIT,
+                        AppConfig.BIG_TARGET_DISTANCE),
                 new ServerTarget(new Point(675, 270),
                         AppConfig.SMALL_TARGET_RADIUS,
-                        AppConfig.SMALL_TARGET_DISTANCE,
                         AppConfig.SMALL_TARGET_SPEED,
-                        AppConfig.SMALL_TARGET_POINTS_FOR_HIT),
+                        AppConfig.SMALL_TARGET_POINTS_FOR_HIT,
+                        AppConfig.SMALL_TARGET_DISTANCE),
         });
 
         try {
@@ -119,9 +119,9 @@ public class Server {
                 gameInfo.moveTargets();
                 for (ServerTarget target : gameInfo.getTargets()) {
                     for (Player player: gameInfo.getPlayers()) {
-                        if (player != null && player.getArrow().isActive() && target.check_hit(player.getArrow())) {
+                        if (player != null && player.getArrow().isActive() && target.checkHit(player.getArrow())) {
                             player.getArrow().remove();
-                            player.getInfo().incrementScore(target.get_points_for_hit());
+                            player.getInfo().incrementScore(target.getPoints());
                             if (player.getInfo().getScore() >= AppConfig.POINTS_FOR_WIN) {
                                 player.incrementNumWins();
                                 PlayerRepository.increaseNumWins(player.getStat());

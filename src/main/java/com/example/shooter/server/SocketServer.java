@@ -60,7 +60,7 @@ public class SocketServer {
             if (msg.getAction() == MsgAction.SET_READY) {
                 gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort())).setReady(msg.isSignal());
                 if (!gameInfo.isGameStatus() && gameInfo.checkReady()) {
-                    gameInfo.run_game();
+                    gameInfo.runGame();
                 }
                 else if (gameInfo.isGameStatus() && gameInfo.isPauseStatus() && gameInfo.checkReady()) {
                     gameInfo.unpauseGame();
@@ -88,8 +88,8 @@ public class SocketServer {
     public AuthMsg readAuthMsg() {
         AuthMsg msg = null;
         try {
-            String msg_str = dis.readUTF();
-            msg = gson.fromJson(msg_str, AuthMsg.class);
+            String msgStr = dis.readUTF();
+            msg = gson.fromJson(msgStr, AuthMsg.class);
         }
         catch (IOException e) {
             System.out.println("Error read");
@@ -98,28 +98,28 @@ public class SocketServer {
     }
 
     public void sendUnready() {
-        String str_msg = gson.toJson(new Msg(MsgAction.SET_UNREADY, null, null, null, null));
+        String strMsg = gson.toJson(new Msg(MsgAction.SET_UNREADY, null, null, null, null));
         try {
-            dos.writeUTF(str_msg);
+            dos.writeUTF(strMsg);
         } catch (IOException e) {
             log.warn("Error send unready to player");
         }
     }
 
     public void sendAuthResp(AuthResponse resp) {
-        String str_msg = gson.toJson(resp);
+        String strMsg = gson.toJson(resp);
         try {
-            dos.writeUTF(str_msg);
+            dos.writeUTF(strMsg);
         } catch (IOException e) {
             log.warn("Error send auth res to player");
         }
     }
 
     public void sendWinner(PlayerInfo info) {
-        PlayerInfo[] info_data = new PlayerInfo[] {info};
-        String str_msg = gson.toJson(new Msg(MsgAction.WINNER, null, null, info_data, null));
+        PlayerInfo[] infoData = new PlayerInfo[] {info};
+        String strMsg = gson.toJson(new Msg(MsgAction.WINNER, null, null, infoData, null));
         try {
-            dos.writeUTF(str_msg);
+            dos.writeUTF(strMsg);
         } catch (IOException e) {
             log.warn("Error send winner");
         }
@@ -127,10 +127,10 @@ public class SocketServer {
 
     private void sendLeaderboard() {
         List<PlayerStatistic> leaderboard = PlayerRepository.getLeaderboard();
-        String str_msg = gson.toJson(new Msg(MsgAction.SEND_LEADERBOARD, null, null,
+        String strMsg = gson.toJson(new Msg(MsgAction.SEND_LEADERBOARD, null, null,
                 null, leaderboard));
         try {
-            dos.writeUTF(str_msg);
+            dos.writeUTF(strMsg);
         } catch (IOException e) {
             log.warn("Error send leaderboard");
         }
@@ -138,10 +138,10 @@ public class SocketServer {
 
     public void sendData() {
         ArrowData[] arrows = gameInfo.getDataArrows();
-        String str_msg = gson.toJson(new Msg(MsgAction.SEND_DATA, gameInfo.getTargetCoords(), arrows,
+        String strMsg = gson.toJson(new Msg(MsgAction.SEND_DATA, gameInfo.getTargetCoords(), arrows,
                 gameInfo.getDataInfo(), null));
         try {
-            dos.writeUTF(str_msg);
+            dos.writeUTF(strMsg);
         } catch (IOException e) {
             log.warn("Error send data to player");
         }
@@ -151,9 +151,9 @@ public class SocketServer {
         PlayerInfo[] info = gameInfo.getPlayersInfo();
         Msg msg = new Msg(MsgAction.NEW_PLAYER, null, null, info, null);
         msg.setNewPlayerId(id);
-        String str_msg = gson.toJson(msg);
+        String strMsg = gson.toJson(msg);
         try {
-            dos.writeUTF(str_msg);
+            dos.writeUTF(strMsg);
         } catch (IOException e) {
             log.warn("Error send new player");
         }
@@ -162,8 +162,8 @@ public class SocketServer {
     public SignalMsg readMsg() {
         SignalMsg msg = null;
         try {
-            String msg_str = dis.readUTF();
-            msg = gson.fromJson(msg_str, SignalMsg.class);
+            String msgStr = dis.readUTF();
+            msg = gson.fromJson(msgStr, SignalMsg.class);
         }
         catch (IOException e) {
             log.warn("Client disconnect - " + ss.getPort());

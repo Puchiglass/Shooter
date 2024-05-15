@@ -64,7 +64,7 @@ public class GameInfo {
 
     public void setTargetToStart() {
         for (ServerTarget t : targets) {
-            t.set_start_coords();
+            t.setStartCoords();
         }
     }
 
@@ -125,7 +125,7 @@ public class GameInfo {
     public Point[] getTargetCoords() {
         Point[] res = new Point[2];
         for (int i = 0; i < 2; i++) {
-            res[i] = targets[i].get_coords();
+            res[i] = targets[i].getCoords();
         }
         return res;
     }
@@ -174,7 +174,7 @@ public class GameInfo {
         server.unpause_game();
     }
 
-    public void run_game() {
+    public void runGame() {
         gameStatus = true;
         server.start_game();
     }
