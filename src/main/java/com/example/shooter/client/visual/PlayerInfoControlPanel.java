@@ -34,6 +34,6 @@ public class PlayerInfoControlPanel extends GridPane {
     }
 
     public void update_num_wins(PlayerInfo info) {
-        players[info.get_num_on_field()].update_wins_val(info.get_stat().getNum_wins());
+        players[info.get_num_on_field()].update_wins_val(info.get_stat().getNumWins());
     }
 }

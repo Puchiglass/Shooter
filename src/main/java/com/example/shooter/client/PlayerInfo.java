@@ -2,7 +2,6 @@ package com.example.shooter.client;
 
 import com.example.shooter.server.PlayerStatistic;
 
-import javax.persistence.*;
 public class PlayerInfo {
     int shots;
     int score;
@@ -33,7 +32,7 @@ public class PlayerInfo {
     }
 
     public void increase_num_wins() {
-        stat.increase_num_wins();
+        stat.incrementNumWins();
     }
 
     public void increase_shots() {

@@ -4,58 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e8bf5b5-e451-4db4-9543-1375c260ff87" name="Changes" comment="ADD подключение клиентов в серверу">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/Arrow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/BClientModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/ClientModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/PlayerInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/SocketClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/ConnectWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/LeaderboardWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerIcon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerIconsField.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerInfoControlPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerInfoVBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/WinnerWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/messages/AuthMsg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/messages/AuthResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/messages/Msg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/messages/MsgAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/messages/MsgData/ArrowData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/messages/MsgData/Point.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/messages/SignalMsg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/BModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/DB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/HibernateSessionFactoryUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/Model.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/PlayerStatistic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerArrow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerTarget.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/SocketServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/main-view.fxml" afterDir="false" />
+    <list default="true" id="0e8bf5b5-e451-4db4-9543-1375c260ff87" name="Changes" comment="init">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/GameInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/game/app/Application.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/game/app/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/game/app/Game.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/game/app/GameStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/game/model/Arrow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/game/model/BigTarget.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/game/model/Score.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/game/model/SmallTarget.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/game/model/Target.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/net/client/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/net/model/GameInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/net/model/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/net/server/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/PlayerInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/PlayerInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerInfoControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerInfoControlPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerInfoVBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerInfoVBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/BModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/BModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/PlayerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/Model.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/PlayerStatistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/PlayerStatistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerArrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerArrow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerTarget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerTarget.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/SocketServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,6 +113,11 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -269,7 +238,7 @@
       <workItem from="1714668757333" duration="2985000" />
       <workItem from="1714807202759" duration="4450000" />
       <workItem from="1714976068368" duration="4863000" />
-      <workItem from="1715794252018" duration="2686000" />
+      <workItem from="1715794252018" duration="4793000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -343,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714637496725</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="init">
+      <option name="closed" value="true" />
+      <created>1715797067510</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715797067510</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,13 +338,13 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="init" />
     <MESSAGE value="add circle movement" />
     <MESSAGE value="add start, stop, pause logic about movement" />
     <MESSAGE value="ADD движение мишень, логика всех кнопок на мишени" />
     <MESSAGE value="стабильная версия" />
     <MESSAGE value="ADD подключение клиентов в серверу" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADD подключение клиентов в серверу" />
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

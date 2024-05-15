@@ -8,6 +8,7 @@ open module com.example.shooter {
     requires java.sql;
     requires java.persistence;
     requires java.naming;
+    requires static lombok;
 
 
     exports com.example.shooter;

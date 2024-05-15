@@ -38,7 +38,7 @@ public class PlayerInfoVBox extends VBox {
         wins_label = new Label("Победы:");
         this.getChildren().add(wins_label);
 
-        wins_val = new Label(Integer.toString(info.get_stat().getNum_wins()));
+        wins_val = new Label(Integer.toString(info.get_stat().getNumWins()));
         this.getChildren().add(wins_val);
 
         this.setLayoutY(info.get_num_on_field() * height);

@@ -13,7 +13,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    Model model = BModel.get_model();
+    GameInfo gameInfo = BModel.getModel();
     Thread game_thread = null;
     int port = 5588;
     InetAddress ip = null;
@@ -26,10 +26,10 @@ public class Server {
     void run() {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.close();
-        model.set_server(this);
+        gameInfo.setServer(this);
         ServerSocket ss;
         Socket cs;
-        model.set_target(new ServerTarget[]{
+        gameInfo.setTargets(new ServerTarget[]{
                 new ServerTarget(new Point(475, 270),
                         AppConfig.BIG_TARGET_RADIUS,
                         AppConfig.BIG_TARGET_DISTANCE,
@@ -54,26 +54,26 @@ public class Server {
                 AuthMsg msg = server_socket.read_auth_msg();
                 String result_text = "";
                 boolean result = true;
-                if (model.get_cnt_players() >= Model.get_max_players()) {
+                if (gameInfo.getCountPlayers() >= GameInfo.MAX_PLAYERS) {
                     result_text = "Сервер заполнен!";
                     result = false;
                 }
-                else if (!model.is_unique_name(msg.get_name())) {
+                else if (!gameInfo.isUniqueName(msg.get_name())) {
                     result_text = "Игрок с таким именем уже есть. Введите другое имя.";
                     result = false;
                 }
                 server_socket.send_auth_resp(new AuthResponse(result, result_text));
 
                 if (result) {
-                    model.increase_cnt_players();
-                    int num_on_field = model.get_free_num_on_field();
-                    PlayerStatistic player_stat = DB.get_player_stat(msg.get_name());
+                    gameInfo.incrementCntPlayers();
+                    int num_on_field = gameInfo.getFreeNumOnField();
+                    PlayerStatistic player_stat = PlayerRepository.getPlayerStat(msg.get_name());
 
-                    Player player = new Player(server_socket, Model.arrows[num_on_field], num_on_field,
+                    Player player = new Player(server_socket, GameInfo.arrows[num_on_field], num_on_field,
                             msg.get_name(), player_stat);
-                    model.set_player_id(cs.getPort(), num_on_field);
-                    model.add_player(num_on_field, player);
-                    model.send_new_player(num_on_field);
+                    gameInfo.setPlayerId(cs.getPort(), num_on_field);
+                    gameInfo.addPlayer(num_on_field, player);
+                    gameInfo.sendNewPlayer(num_on_field);
                     server_socket.listen_msg();
                 }
                 else {
@@ -87,7 +87,7 @@ public class Server {
     }
 
     public void start_game() {
-        model.clear_statistic();
+        gameInfo.clearStatistic();
         game_thread = new Thread(this::game);
         game_thread.setDaemon(true);
         game_thread.start();
@@ -100,38 +100,38 @@ public class Server {
     }
 
     void stop_game() {
-        model.set_is_run_game(false);
-        model.set_target_start_coords();
-        model.send_unready_players();
+        gameInfo.setGameStatus(false);
+        gameInfo.setTargetToStart();
+        gameInfo.sendUnreadyPlayers();
         game_thread.interrupt();
         game_thread = null;
-        model.send_data_to_players();
+        gameInfo.sendDataToPlayers();
     }
     void game() {
         try {
-            while (model.game_status) {
-                if (model.is_pause()) {
+            while (gameInfo.isGameStatus()) {
+                if (gameInfo.isPauseStatus()) {
                     synchronized (this) {
                         this.wait();
                     }
                 }
-                model.move_arrows();
-                model.move_targets();
-                for (ServerTarget target : model.get_targets()) {
-                    for (Player player: model.get_players()) {
-                        if (player != null && player.get_arrow().is_active() && target.check_hit(player.get_arrow())) {
+                gameInfo.moveArrows();
+                gameInfo.moveTargets();
+                for (ServerTarget target : gameInfo.getTargets()) {
+                    for (Player player: gameInfo.getPlayers()) {
+                        if (player != null && player.get_arrow().isActive() && target.check_hit(player.get_arrow())) {
                             player.get_arrow().remove();
                             player.get_info().increase_score(target.get_points_for_hit());
                             if (player.get_info().get_score() >= AppConfig.POINTS_FOR_WIN) {
                                 player.increase_num_wins();
-                                DB.increase_num_wins(player.get_stat());
-                                model.send_winner(player.get_info());
+                                PlayerRepository.increaseNumWins(player.get_stat());
+                                gameInfo.sendWinner(player.get_info());
                                 stop_game();
                             }
                         }
                     }
                 }
-                model.send_data_to_players();
+                gameInfo.sendDataToPlayers();
 
                 Thread.sleep(50);
             }

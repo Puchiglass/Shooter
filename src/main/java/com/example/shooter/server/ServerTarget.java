@@ -43,8 +43,8 @@ public class ServerTarget {
     }
 
     public boolean check_hit(ServerArrow arrow) {
-        double x = Math.pow(coords.x - arrow.get_coords().x, 2);
-        double y = Math.pow(coords.y - arrow.get_coords().y, 2);
+        double x = Math.pow(coords.x - arrow.getCoords().x, 2);
+        double y = Math.pow(coords.y - arrow.getCoords().y, 2);
         double r = Math.pow(radius, 2);
         return x + y <= r;
     }

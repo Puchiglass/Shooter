@@ -12,7 +12,7 @@ import java.util.List;
 
 public class SocketServer {
     Gson gson = new Gson();
-    Model model = BModel.get_model();
+    GameInfo gameInfo = BModel.getModel();
     Socket ss;
     InputStream is;
     OutputStream os;
@@ -43,36 +43,36 @@ public class SocketServer {
         while (true) {
             SignalMsg msg = read_msg();
             if (msg == null) {
-                model.add_player(model.get_player_id(ss.getPort()), null);
-                model.delete_id(ss.getPort());
+                gameInfo.addPlayer(gameInfo.getPlayerId(ss.getPort()), null);
+                gameInfo.deleteId(ss.getPort());
                 try {
                     ss.close();
                 }
                 catch (IOException e) {
                     System.out.println("Error disconnect client" + e);
                 }
-                model.decrease_cnt_players();
+                gameInfo.decrementCntPlayers();
                 break;
             }
             if (msg.get_action() == MsgAction.SET_READY) {
-                model.get_player(model.get_player_id(ss.getPort())).set_ready(msg.get_signal());
-                if (!model.is_run_game() && model.check_ready()) {
-                    model.run_game();
+                gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort())).set_ready(msg.get_signal());
+                if (!gameInfo.isGameStatus() && gameInfo.checkReady()) {
+                    gameInfo.run_game();
                 }
-                else if (model.is_run_game() && model.is_pause() && model.check_ready()) {
-                    model.unpause_game();
+                else if (gameInfo.isGameStatus() && gameInfo.isPauseStatus() && gameInfo.checkReady()) {
+                    gameInfo.unpauseGame();
                 }
             }
             else if (msg.get_action() == MsgAction.SHOT) {
-                Player player = model.get_player(model.get_player_id(ss.getPort()));
-                if (!player.get_arrow().is_active()) {
+                Player player = gameInfo.getPlayer(gameInfo.getPlayerId(ss.getPort()));
+                if (!player.get_arrow().isActive()) {
                     player.get_info().increase_shots();
-                    player.get_arrow().set_active(msg.get_signal());
+                    player.get_arrow().setActive(msg.get_signal());
                 }
             }
             else if (msg.get_action() == MsgAction.PAUSE) {
-                if (!model.is_pause()) {
-                    model.pause_game();
+                if (!gameInfo.isPauseStatus()) {
+                    gameInfo.pauseGame();
                 }
             }
             else if (msg.get_action() == MsgAction.GET_LEADERBOARD) {
@@ -123,7 +123,7 @@ public class SocketServer {
     }
 
     private void send_leaderboard() {
-        List<PlayerStatistic> leaderboard = DB.get_leaderboard();
+        List<PlayerStatistic> leaderboard = PlayerRepository.getLeaderboard();
         String str_msg = gson.toJson(new Msg(MsgAction.SEND_LEADERBOARD, null, null,
                 null, leaderboard));
         try {
@@ -134,9 +134,9 @@ public class SocketServer {
     }
 
     public void send_data() {
-        ArrowData[] arrows = model.get_data_arrows();
-        String str_msg = gson.toJson(new Msg(MsgAction.SEND_DATA, model.get_target_coords(), arrows,
-                model.get_data_info(), null));
+        ArrowData[] arrows = gameInfo.getDataArrows();
+        String str_msg = gson.toJson(new Msg(MsgAction.SEND_DATA, gameInfo.getTargetCoords(), arrows,
+                gameInfo.getDataInfo(), null));
         try {
             dos.writeUTF(str_msg);
         } catch (IOException e) {
@@ -145,7 +145,7 @@ public class SocketServer {
     }
 
     public void send_new_player(int id) {
-        PlayerInfo[] info = model.get_players_info();
+        PlayerInfo[] info = gameInfo.getPlayersInfo();
         Msg msg = new Msg(MsgAction.NEW_PLAYER, null, null, info, null);
         msg.set_new_player_id(id);
         String str_msg = gson.toJson(msg);
