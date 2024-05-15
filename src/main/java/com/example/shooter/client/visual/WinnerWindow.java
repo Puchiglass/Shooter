@@ -26,7 +26,7 @@ public class WinnerWindow {
         vBox.getChildren().add(winnerName);
 
         Button connectButton = new Button("Продолжить");
-        connectButton.setOnAction(event-> {window.close();});
+        connectButton.setOnAction(event-> window.close());
         vBox.getChildren().add(connectButton);
         window.showAndWait();
     }

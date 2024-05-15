@@ -4,7 +4,6 @@ import com.example.shooter.server.PlayerStatistic;
 import com.example.shooter.server.ServerArrow;
 import com.example.shooter.server.SocketServer;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter

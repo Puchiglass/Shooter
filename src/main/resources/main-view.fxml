@@ -5,45 +5,47 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<BorderPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.shooter.client.MainController">
-   <bottom>
-      <HBox alignment="CENTER_LEFT" minHeight="60.0" prefHeight="60.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
-           <children>
-              <Button fx:id="ready_button" mnemonicParsing="false" onAction="#ready" text="Готов">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin></Button>
-              <Button mnemonicParsing="false" onAction="#pause_game" text="Пауза">
-               </Button>
-              <Button mnemonicParsing="false" onAction="#shoot" text="Выстрел">
-               <HBox.margin>
-                  <Insets left="30.0" />
-               </HBox.margin></Button>
+<BorderPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.shooter.client.MainController">
+    <bottom>
+        <HBox alignment="CENTER_LEFT" minHeight="60.0" prefHeight="60.0" prefWidth="600.0" spacing="50.0"
+              BorderPane.alignment="CENTER">
+            <Button fx:id="ready_button" mnemonicParsing="false" onAction="#ready" text="Готов">
+                <HBox.margin>
+                    <Insets left="10.0"/>
+                </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#pause_game" text="Пауза">
+            </Button>
+            <Button mnemonicParsing="false" onAction="#shoot" text="Выстрел">
+                <HBox.margin>
+                    <Insets left="30.0"/>
+                </HBox.margin>
+            </Button>
             <Button mnemonicParsing="false" onAction="#get_leaderboard" text="Таблица лидеров">
                 <HBox.margin>
-                    <Insets left="30.0" />
-                </HBox.margin></Button>
-           </children>
-      </HBox>
-   </bottom>
-   <right>
-      <VBox fx:id="RightVBox" alignment="TOP_CENTER" prefHeight="335.0" prefWidth="125.0" BorderPane.alignment="CENTER">
-               <children>
-               </children>
-      </VBox>
-   </right>
-   <center>
-      <Pane fx:id="playing_field" minHeight="540.0" prefHeight="540.0" prefWidth="775.0" BorderPane.alignment="CENTER">
-         <children>
-            <Circle fx:id="big_target" fill="#ff1e00" layoutX="475.0" layoutY="270.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="small_target" fill="#ff1e00" layoutX="675.0" layoutY="270.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-         </children>
-      </Pane>
-   </center>
-   <left>
-      <VBox fx:id="LeftVBox" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-         </children>
-      </VBox>
-   </left>
+                    <Insets left="30.0"/>
+                </HBox.margin>
+            </Button>
+        </HBox>
+    </bottom>
+    <right>
+        <VBox fx:id="RightVBox" alignment="TOP_CENTER" prefHeight="335.0" prefWidth="125.0"
+              BorderPane.alignment="CENTER">
+        </VBox>
+    </right>
+    <center>
+        <Pane fx:id="playing_field" minHeight="540.0" prefHeight="540.0" prefWidth="775.0"
+              BorderPane.alignment="CENTER">
+            <Circle fx:id="big_target" fill="#ff1e00" layoutX="475.0" layoutY="270.0" radius="40.0" stroke="BLACK"
+                    strokeType="INSIDE"/>
+            <Circle fx:id="small_target" fill="#ff1e00" layoutX="675.0" layoutY="270.0" radius="20.0" stroke="BLACK"
+                    strokeType="INSIDE"/>
+        </Pane>
+    </center>
+    <left>
+        <VBox fx:id="LeftVBox" prefWidth="100.0" BorderPane.alignment="CENTER">
+        </VBox>
+    </left>
 </BorderPane>

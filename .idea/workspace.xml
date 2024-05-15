@@ -5,21 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e8bf5b5-e451-4db4-9543-1375c260ff87" name="Changes" comment="refactor something">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/BClientModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/ClientGameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/ClientGameInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/PlayerInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/PlayerInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/SocketClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/ConnectWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/ConnectWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/LeaderboardWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/LeaderboardWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerIconsField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/PlayerIconsField.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/WinnerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/client/visual/WinnerWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/BModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/BModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerGameInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/SocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -368,7 +357,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715805244966</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="refactor something">
+      <option name="closed" value="true" />
+      <created>1715806068715</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1715806068715</updated>
+    </task>
+    <task id="LOCAL-00018" summary="refactor something">
+      <option name="closed" value="true" />
+      <created>1715806195801</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1715806195801</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

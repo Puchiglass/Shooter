@@ -140,7 +140,7 @@ public class Server {
             }
         }
         catch (InterruptedException e) {
-            ;
+            log.warn("Game thread interrupted");
         }
     }
 }
