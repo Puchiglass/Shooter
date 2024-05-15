@@ -8,6 +8,5 @@ import lombok.Getter;
 public class ArrowData {
 
     private Point coords;
-
     private boolean active;
 }

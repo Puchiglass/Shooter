@@ -7,7 +7,7 @@ public class AppConfig {
     public final static double PLAYING_FIELD_HEIGHT = 540;
     public final static double PLAYING_FIELD_WIDTH = 774.4;
 
-    public final static int ARROW_SPEED = 40;
+    public final static int ARROW_SPEED = 60;
     public final static int ARROW_LENGTH = 40;
 
     public final static double BIG_TARGET_DISTANCE = 475;
