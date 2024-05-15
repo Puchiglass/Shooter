@@ -92,7 +92,7 @@ public class SocketServer {
             msg = gson.fromJson(msgStr, AuthMsg.class);
         }
         catch (IOException e) {
-            System.out.println("Error read");
+            log.warn("Error read auth");
         }
         return msg;
     }

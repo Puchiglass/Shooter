@@ -2,10 +2,13 @@ package com.example.shooter.server;
 
 import com.example.shooter.*;
 import com.example.shooter.client.Player;
+import com.example.shooter.client.SocketClient;
 import com.example.shooter.messages.AuthMsg;
 import com.example.shooter.messages.AuthResponse;
 import com.example.shooter.messages.MsgData.Point;
 import org.hibernate.Session;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -13,6 +16,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
+    private static final Logger log = LogManager.getLogger(SocketClient.class);
+
     private final ServerGameInfo serverGameInfo = ServerGameInfo.getInstance();
     private Thread gameThread = null;
 
@@ -46,7 +51,7 @@ public class Server {
 
             while (true) {
                 cs = ss.accept();
-                System.out.println("Client connect - " + cs.getPort());
+                log.info("Client connect - " + cs.getPort());
 
                 SocketServer socketServer = new SocketServer(cs);
                 AuthMsg msg = socketServer.readAuthMsg();
@@ -80,7 +85,7 @@ public class Server {
             }
         }
         catch (IOException ex) {
-            System.out.println("Server startup error!");
+            log.warn("Server startup error!");
         }
     }
 
