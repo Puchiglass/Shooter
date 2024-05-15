@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public class ServerTarget {
-    private final static double fieldHeight = AppConfig.PLAYING_FIELD_HEIGHT;
+    private final static double FIELD_HEIGHT = AppConfig.PLAYING_FIELD_HEIGHT;
 
     private final Point coords;
     private final double radius;
@@ -30,7 +30,7 @@ public class ServerTarget {
             }
         }
         else {
-            if (coords.y + radius + speed <= fieldHeight) {
+            if (coords.y + radius + speed <= FIELD_HEIGHT) {
                 coords.y += speed;
             }
             else {
@@ -50,6 +50,6 @@ public class ServerTarget {
     public void setStartCoords() {
         isUpper = true;
         coords.x = xDistance;
-        coords.y = fieldHeight / 2;
+        coords.y = FIELD_HEIGHT / 2;
     }
 }

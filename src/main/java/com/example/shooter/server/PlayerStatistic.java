@@ -14,7 +14,7 @@ public class PlayerStatistic {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
 
-    @Column(unique = true)
+    @Column(name = "name", unique = true)
     private String name;
 
     @Column(name = "num_wins")
@@ -27,6 +27,5 @@ public class PlayerStatistic {
 
     public PlayerStatistic(String name) {
         this.name = name;
-        numWins = 0;
     }
 }

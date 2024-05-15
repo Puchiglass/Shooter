@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e8bf5b5-e451-4db4-9543-1375c260ff87" name="Changes" comment="refactor client">
+    <list default="true" id="0e8bf5b5-e451-4db4-9543-1375c260ff87" name="Changes" comment="refactor something">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/GameInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/PlayerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/PlayerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/PlayerStatistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/PlayerStatistic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerArrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerArrow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerTarget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/ServerTarget.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shooter/server/SocketServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,7 +335,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715801461050</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="refactor something">
+      <option name="closed" value="true" />
+      <created>1715804659107</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1715804659107</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,7 +370,8 @@
     <MESSAGE value="refactor server" />
     <MESSAGE value="refactor messages" />
     <MESSAGE value="refactor client" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor client" />
+    <MESSAGE value="refactor something" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor something" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

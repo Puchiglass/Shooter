@@ -171,12 +171,12 @@ public class GameInfo {
 
     public void unpauseGame() {
         pauseStatus = false;
-        server.unpause_game();
+        server.unpauseGame();
     }
 
     public void runGame() {
         gameStatus = true;
-        server.start_game();
+        server.startGame();
     }
 
     public Player getPlayer(int id) {

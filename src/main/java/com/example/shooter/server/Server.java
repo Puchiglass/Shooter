@@ -13,10 +13,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    GameInfo gameInfo = BModel.getModel();
-    Thread game_thread = null;
-    int port = 5588;
-    InetAddress ip = null;
+    private final GameInfo gameInfo = BModel.getModel();
+    private Thread gameThread = null;
 
     public static void main(String[] args) {
         Server server = new Server();
@@ -43,41 +41,41 @@ public class Server {
         });
 
         try {
-            ip = InetAddress.getLocalHost();
-            ss = new ServerSocket(port, 0, ip);
+            InetAddress ip = InetAddress.getLocalHost();
+            ss = new ServerSocket(AppConfig.PORT, 0, ip);
 
             while (true) {
                 cs = ss.accept();
                 System.out.println("Client connect - " + cs.getPort());
 
-                SocketServer server_socket = new SocketServer(cs);
-                AuthMsg msg = server_socket.readAuthMsg();
-                String result_text = "";
+                SocketServer socketServer = new SocketServer(cs);
+                AuthMsg msg = socketServer.readAuthMsg();
+                String resultText = "";
                 boolean result = true;
                 if (gameInfo.getCountPlayers() >= GameInfo.MAX_PLAYERS) {
-                    result_text = "Сервер заполнен!";
+                    resultText = "Сервер заполнен!";
                     result = false;
                 }
                 else if (!gameInfo.isUniqueName(msg.getName())) {
-                    result_text = "Игрок с таким именем уже есть. Введите другое имя.";
+                    resultText = "Игрок с таким именем уже есть. Введите другое имя.";
                     result = false;
                 }
-                server_socket.sendAuthResp(new AuthResponse(result, result_text));
+                socketServer.sendAuthResp(new AuthResponse(result, resultText));
 
                 if (result) {
                     gameInfo.incrementCntPlayers();
-                    int num_on_field = gameInfo.getFreeNumOnField();
-                    PlayerStatistic player_stat = PlayerRepository.getPlayerStat(msg.getName());
+                    int numOnField = gameInfo.getFreeNumOnField();
+                    PlayerStatistic playerStat = PlayerRepository.getPlayerStat(msg.getName());
 
-                    Player player = new Player(server_socket, GameInfo.arrows[num_on_field], num_on_field,
-                            msg.getName(), player_stat);
-                    gameInfo.setPlayerId(cs.getPort(), num_on_field);
-                    gameInfo.addPlayer(num_on_field, player);
-                    gameInfo.sendNewPlayer(num_on_field);
-                    server_socket.listenMsg();
+                    Player player = new Player(socketServer, GameInfo.arrows[numOnField], numOnField,
+                            msg.getName(), playerStat);
+                    gameInfo.setPlayerId(cs.getPort(), numOnField);
+                    gameInfo.addPlayer(numOnField, player);
+                    gameInfo.sendNewPlayer(numOnField);
+                    socketServer.listenMsg();
                 }
                 else {
-                    server_socket.close();
+                    socketServer.close();
                 }
             }
         }
@@ -86,25 +84,25 @@ public class Server {
         }
     }
 
-    public void start_game() {
+    public void startGame() {
         gameInfo.clearStatistic();
-        game_thread = new Thread(this::game);
-        game_thread.setDaemon(true);
-        game_thread.start();
+        gameThread = new Thread(this::game);
+        gameThread.setDaemon(true);
+        gameThread.start();
     }
 
-    public void unpause_game() {
+    public void unpauseGame() {
         synchronized (this) {
             notifyAll();
         }
     }
 
-    void stop_game() {
+    void stopGame() {
         gameInfo.setGameStatus(false);
         gameInfo.setTargetToStart();
         gameInfo.sendUnreadyPlayers();
-        game_thread.interrupt();
-        game_thread = null;
+        gameThread.interrupt();
+        gameThread = null;
         gameInfo.sendDataToPlayers();
     }
     void game() {
@@ -126,7 +124,7 @@ public class Server {
                                 player.incrementNumWins();
                                 PlayerRepository.increaseNumWins(player.getStat());
                                 gameInfo.sendWinner(player.getInfo());
-                                stop_game();
+                                stopGame();
                             }
                         }
                     }

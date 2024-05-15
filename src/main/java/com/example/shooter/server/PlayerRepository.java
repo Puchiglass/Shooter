@@ -6,14 +6,15 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class PlayerRepository {
+
     public static PlayerStatistic getPlayerStat(String name) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         List<PlayerStatistic> res =(List<PlayerStatistic>)session.createQuery("FROM PlayerStatistic WHERE name = :name").setParameter("name", name).list();
         session.close();
         if (res.isEmpty()) {
-            PlayerStatistic new_player = new PlayerStatistic(name);
-            addNewPlayer(new_player);
-            return new_player;
+            PlayerStatistic newPlayer = new PlayerStatistic(name);
+            addNewPlayer(newPlayer);
+            return newPlayer;
         }
         return res.getFirst();
     }
