@@ -33,7 +33,7 @@ public class LeaderboardWindow {
         table.getColumns().add(nameColumn);
 
         TableColumn<PlayerStatistic, Integer> numWinsColumn = new TableColumn<>("Количество побед");
-        numWinsColumn.setCellValueFactory(new PropertyValueFactory<>("num_wins"));
+        numWinsColumn.setCellValueFactory(new PropertyValueFactory<>("numWins"));
         table.getColumns().add(numWinsColumn);
 
         FlowPane main = new FlowPane(table);

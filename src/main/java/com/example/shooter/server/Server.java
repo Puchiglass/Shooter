@@ -26,7 +26,7 @@ public class Server {
         server.run();
     }
 
-    void run() {
+    public void run() {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.close();
         serverGameInfo.setServer(this);
@@ -102,7 +102,7 @@ public class Server {
         }
     }
 
-    void stopGame() {
+    public void stopGame() {
         serverGameInfo.setGameStatus(false);
         serverGameInfo.setTargetToStart();
         serverGameInfo.sendUnreadyPlayers();
@@ -110,7 +110,8 @@ public class Server {
         gameThread = null;
         serverGameInfo.sendDataToPlayers();
     }
-    void game() {
+
+    public void game() {
         try {
             while (serverGameInfo.isGameStatus()) {
                 if (serverGameInfo.isPauseStatus()) {

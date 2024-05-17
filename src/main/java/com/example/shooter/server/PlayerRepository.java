@@ -1,5 +1,6 @@
 package com.example.shooter.server;
 
+import com.example.shooter.AppConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -37,7 +38,12 @@ public class PlayerRepository {
 
     public static List<PlayerStatistic> getLeaderboard() {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        List<PlayerStatistic> res =(List<PlayerStatistic>)session.createQuery("FROM PlayerStatistic ORDER BY numWins DESC").list();
+        List<PlayerStatistic> res =(List<PlayerStatistic>)session
+                .createQuery("FROM PlayerStatistic ORDER BY numWins  DESC")
+                .list()
+                .stream()
+                .limit(AppConfig.LIMIT_LEADERBOARD)
+                .toList();
         session.close();
         return res;
     }

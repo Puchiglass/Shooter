@@ -29,7 +29,7 @@ public class ClientGameInfo {
     }
 
     public void updateData(PlayerInfo[] infos) {
-        mc.update_data(infos);
+        mc.updateData(infos);
     }
 
     public void setUnready() {
@@ -41,15 +41,15 @@ public class ClientGameInfo {
             playerId = new_player_id;
         }
         for (PlayerInfo info : infos) {
-            mc.add_new_player(info);
+            mc.addNewPlayer(info);
         }
     }
 
     public void showWinner(PlayerInfo info) {
-        mc.show_winner(info);
+        mc.showWinner(info);
     }
 
     public void showLeaderboard(List<PlayerStatistic> leaderboard) {
-        mc.show_leaderboard(leaderboard);
+        mc.showLeaderboard(leaderboard);
     }
 }

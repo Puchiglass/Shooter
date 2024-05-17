@@ -28,7 +28,7 @@ public class ServerArrow {
         }
     }
 
-    ServerArrow(Point startCoords) {
+    public ServerArrow(Point startCoords) {
         this.startCoords = startCoords;
         coords = new Point(startCoords.x + AppConfig.ARROW_LENGTH, startCoords.y);
     }

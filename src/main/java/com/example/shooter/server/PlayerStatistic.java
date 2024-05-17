@@ -20,7 +20,6 @@ public class PlayerStatistic {
     @Column(name = "num_wins")
     private int numWins = 0;
 
-
     public void incrementNumWins() {
         numWins++;
     }

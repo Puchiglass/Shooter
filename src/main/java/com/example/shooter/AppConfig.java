@@ -21,6 +21,7 @@ public class AppConfig {
 
     public final static int POINTS_FOR_WIN = 1;
     public final static int MAX_PLAYERS = 4;
+    public final static int LIMIT_LEADERBOARD = 5;
 
     public final static int PORT = 5588;
 

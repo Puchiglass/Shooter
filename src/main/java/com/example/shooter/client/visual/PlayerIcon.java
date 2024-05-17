@@ -6,16 +6,16 @@ import javafx.scene.shape.Polygon;
 public class PlayerIcon extends Polygon {
     public PlayerIcon(boolean isMain) {
         super(
-                50, 25,
-                0, 50,
+                30, 15,
+                0, 30,
                 0, 0
         );
 
         Color color;
         if (isMain) {
-            color = Color.GREEN;
+            color = Color.BLUE;
         } else {
-            color = Color.RED;
+            color = Color.BLACK;
         }
         this.setFill(color);
     }
